@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recetas Proteicas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Contenedor principal según el boceto -->
+  <main class="contenedor-principal">
+    <!-- Parte 1 del boceto: zona de chat -->
+    <section id="zona-de-chat" class="zona-de-chat" aria-label="zona de chat" aria-live="polite">
+      <div class="burbuja burbuja-agente">
+        <span class="autor">Recetas Proteicas</span>
+        <p class="texto-mensaje">¡Hola! Contame qué ingredientes tenés o cuánta proteína buscás sumar y te recomiendo recetas.</p>
+      </div>
+    </section>
+
+    <!-- Parte 2 del boceto: zona de escritura -->
+    <form id="zona-de-escritura" class="zona-de-escritura" aria-label="zona de escritura">
+      <div class="fila-entrada">
+        <input
+          type="text"
+          id="campo-mensaje"
+          class="campo-mensaje"
+          placeholder="Ej: Tengo pollo, huevos y espinaca..."
+          maxlength="500"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="boton-enviar" class="boton-enviar">Enviar</button>
+      </div>
+      <div class="barra-estado">
+        <span id="estado-visual" class="estado-visual">Listo para conversar</span>
+        <span id="contador-caracteres" class="contador-caracteres">0 / 500</span>
+      </div>
+    </form>
+  </main>
+
+  <!-- Carga obligatoria de config.js antes que script.js -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
