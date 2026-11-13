@@ -1,0 +1,237 @@
+:root {
+  --fondo-pagina: #fff7ed;
+  --fondo-contenedor: #ffffff;
+  --borde-contenedor: #fb923c;
+  --primario: #f97316;
+  --primario-hover: #ea580c;
+  --secundario: #10b981;
+  --burbuja-agente: #ecfdf5;
+  --borde-agente: #6ee7b7;
+  --burbuja-usuario: #ffedd5;
+  --borde-usuario: #fdba74;
+  --burbuja-error: #fef2f2;
+  --borde-error: #fca5a5;
+  --texto-oscuro: #1f2937;
+  --texto-suave: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #ffedd5 0%, #d1fae5 100%);
+  color: var(--texto-oscuro);
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+/* Estructura fiel al boceto: contenedor redondeado con zona de chat arriba y zona de escritura abajo */
+.contenedor-principal {
+  width: 100%;
+  max-width: 760px;
+  height: 88dvh;
+  max-height: 760px;
+  background-color: var(--fondo-contenedor);
+  border: 3px solid var(--borde-contenedor);
+  border-radius: 28px;
+  box-shadow: 0 14px 30px rgba(249, 115, 22, 0.16);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+}
+
+/* Zona de chat */
+.zona-de-chat {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 6px;
+  scroll-behavior: smooth;
+}
+
+.burbuja {
+  max-width: 82%;
+  padding: 12px 16px;
+  border-radius: 20px;
+  line-height: 1.45;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  animation: aparecer 0.2s ease-out;
+}
+
+.burbuja .autor {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.burbuja-agente {
+  align-self: flex-start;
+  background-color: var(--burbuja-agente);
+  border: 2px solid var(--borde-agente);
+  border-bottom-left-radius: 6px;
+}
+
+.burbuja-agente .autor {
+  color: #047857;
+}
+
+.burbuja-usuario {
+  align-self: flex-end;
+  background-color: var(--burbuja-usuario);
+  border: 2px solid var(--borde-usuario);
+  border-bottom-right-radius: 6px;
+}
+
+.burbuja-usuario .autor {
+  color: #c2410c;
+}
+
+.burbuja-error {
+  align-self: flex-start;
+  background-color: var(--burbuja-error);
+  border: 2px solid var(--borde-error);
+  color: #991b1b;
+}
+
+.burbuja-error .autor {
+  color: #b91c1c;
+}
+
+/* Zona de escritura anidada en la parte inferior, igual que el recuadro interno del boceto */
+.zona-de-escritura {
+  background-color: #fffaf5;
+  border: 2.5px solid var(--secundario);
+  border-radius: 22px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+.fila-entrada {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.campo-mensaje {
+  flex: 1;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--texto-oscuro);
+  background-color: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.campo-mensaje:focus {
+  outline: none;
+  border-color: var(--primario);
+}
+
+.campo-mensaje:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.boton-enviar {
+  background-color: var(--primario);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.boton-enviar:hover:not(:disabled) {
+  background-color: var(--primario-hover);
+}
+
+.boton-enviar:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.boton-enviar:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.barra-estado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+  padding: 0 4px;
+}
+
+.estado-cargando {
+  color: #d97706;
+  font-weight: 600;
+}
+
+.estado-exito {
+  color: #059669;
+  font-weight: 600;
+}
+
+.estado-error {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 8px;
+  }
+
+  .contenedor-principal {
+    height: 95dvh;
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .burbuja {
+    max-width: 90%;
+  }
+
+  .fila-entrada {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .boton-enviar {
+    width: 100%;
+  }
+}
